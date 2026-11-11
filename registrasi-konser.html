@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Langit Warna Live – Daftar Tiket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:   #2b2147;
+    --paper: #fff6e5;
+    --sun:   #ffd23f;
+    --pink:  #ff5d8f;
+    --blue:  #3a86ff;
+    --mint:  #2ec4b6;
+
+    --display: "Bagel Fat One", "Trebuchet MS", system-ui, sans-serif;
+    --body:    "Nunito", "Segoe UI", system-ui, sans-serif;
+
+    --garis:       3px solid var(--ink);
+    --radius-card: 24px;
+    --radius-isi:  14px;
+    --fokus:       4px solid var(--blue);
+ 
+   * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 32px 16px;
+    font-family: var(--body);
+    line-height: 1.5;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 12% 18%, var(--pink) 0 90px,  transparent 91px),
+      radial-gradient(circle at 92% 12%, var(--mint) 0 70px,  transparent 71px),
+      radial-gradient(circle at 88% 88%, var(--blue) 0 110px, transparent 111px),
+      radial-gradient(circle at 6%  92%, var(--sun)  0 60px,  transparent 61px),
+      var(--paper);
+  }
+
+  main {
+    width: 100%;
+    max-width: 680px;
+  }
+
+     
+  h1 {
+    margin-bottom: 12px;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 9vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: .01em;
+    text-shadow: 3px 3px 0 var(--sun), 6px 6px 0 var(--pink);
+  }
+
+  .info {
+    margin-bottom: 22px;
+    font-weight: 800;
+  }
+     
+  .card {
+    padding: 26px;
+    background: #fff;
+    border: var(--garis);
+    border-radius: var(--radius-card);
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+
+  .card h2 {
+    margin-bottom: 16px;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+
+  label {
+    display: block;
+    margin: 14px 0 6px;
+    font-weight: 800;
+  }
+
+  .hint {
+    margin-top: 4px;
+    font-size: .85rem;
+    font-weight: 500;
+  }
+
+  input:not([type="radio"]):not([type="checkbox"]),
+  select {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--paper);
+    border: var(--garis);
+    border-radius: var(--radius-isi);
+  }
+
+  input::placeholder {
+    font-weight: 500;
+    color: #8a80a8;
+  }
+
+  input:focus-visible,
+  select:focus-visible {
+    outline: var(--fokus);
+    outline-offset: 2px;
+  }
+
+  input:user-invalid {
+    background: #ffe6ee;
+    border-color: var(--pink);
+  }
+
+  fieldset {
+    margin: 14px 0 0;
+    padding: 0;
+    border: 0;
+  }
+
+  legend {
+    margin-bottom: 8px;
+    padding: 0;
+    font-weight: 800;
+  }
+
+  .pilihan {
+    display: grid;
+    gap: 10px;
+  }
+
+  .pilihan label {
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .pilihan input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .pilihan span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    font-weight: 800;
+    background: var(--paper);
+    border: var(--garis);
+    border-radius: var(--radius-isi);
+  }
+
+  .pilihan small {
+    display: block;
+    font-weight: 500;
+  }
+
+  .pilihan b {
+    font-family: var(--display);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .pilihan input:checked + span {
+    background: var(--sun);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  .pilihan input:focus-visible + span {
+    outline: var(--fokus);
+    outline-offset: 2px;
+  }
+
+  .pilihan input:user-invalid + span {
+    border-color: var(--pink);
+  }
+
+  .setuju {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 18px 0 0;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .setuju input {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+    padding: 0;
+    accent-color: var(--pink);
+  }
+
+  button {
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    font: inherit;
+    font-family: var(--display);
+    font-size: 1.25rem;
+    color: var(--ink);
+    background: var(--sun);
+    border: var(--garis);
+    border-radius: 16px;
+    box-shadow: 0 5px 0 var(--ink);
+    cursor: pointer;
+    transition: transform .12s, box-shadow .12s;
+  }
+
+  button:hover {
+    background: #ffdd66;
+  }
+
+  button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--ink);
+  }
+
+  button:focus-visible {
+    outline: var(--fokus);
+    outline-offset: 3px;
+  }
+
+  .hasil {
+    margin-top: 36px;
+    padding: 16px;
+    color: #000;
+    background: #fff;
+  }
+
+  .hasil h2 {
+    margin-bottom: 10px;
+    font-family: var(--body);
+    font-size: 1.25rem;
+  }
+
+  .gulir {
+    overflow-x: auto;
+  }
+
+  .gulir table {
+    min-width: 600px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html   { scroll-behavior: auto; }
+    button { transition: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Langit Warna Live</h1>
+  <p class="info">Sabtu, 20 Desember 2026 · Lapangan Utama · Pintu dibuka 16.00</p>
+
+  <section class="card" aria-labelledby="judul-form">
+    <h2 id="judul-form">Daftar tiket kamu</h2>
+    <form action="#" method="get">
+      <label for="nama">Nama lengkap</label>
+      <input id="nama" name="nama" type="text" placeholder="Contoh: Rina Putri" autocomplete="name" required>
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="rina@email.com" autocomplete="email" required>
+
+      <label for="hp">No. HP</label>
+      <input id="hp" name="hp" type="tel" placeholder="081234567890" autocomplete="tel"
+             pattern="[0-9+]{9,15}" title="Isi 9 sampai 15 angka" required>
+      <p class="hint">Hanya angka, tanpa spasi atau tanda hubung.</p>
+
+      <fieldset>
+        <legend>Kategori tiket</legend>
+        <div class="pilihan">
+          <label><input type="radio" name="kategori" value="Festival" required>
+            <span><em>Festival<small>Berdiri di depan panggung</small></em><b>Rp150.000</b></span></label>
+          <label><input type="radio" name="kategori" value="Tribun">
+            <span><em>Tribun<small>Tempat duduk bernomor</small></em><b>Rp250.000</b></span></label>
+          <label><input type="radio" name="kategori" value="VIP">
+            <span><em>VIP<small>Area depan + merchandise</small></em><b>Rp500.000</b></span></label>
+        </div>
+      </fieldset>
+
+      <label for="jumlah">Jumlah tiket</label>
+      <input id="jumlah" name="jumlah" type="number" min="1" max="5" value="1" required>
+      <p class="hint">Maksimal 5 tiket per pendaftaran.</p>
+
+      <label for="bayar">Metode pembayaran</label>
+      <select id="bayar" name="bayar" required>
+        <option value="" selected disabled>Pilih metode</option>
+        <option value="Transfer bank">Transfer bank</option>
+        <option value="E-wallet">E-wallet</option>
+        <option value="QRIS">QRIS</option>
+      </select>
+
+      <label for="promo">Kode promo <span style="font-weight:500">(boleh dikosongkan)</span></label>
+      <input id="promo" name="promo" type="text" placeholder="Contoh: WARNA10" maxlength="12">
+
+      <label class="setuju"><input type="checkbox" name="setuju" required>
+        <span>Saya setuju dengan syarat acara: tiket tidak bisa dikembalikan dan wajib membawa identitas.</span></label>
+
+      <button type="submit" name="kirim" value="1">Daftar tiket</button>
+    </form>
+  </section>
+
+  <section class="hasil">
+    <h2>Hasil Registrasi</h2>
+    <div class="gulir">
+      <table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>No. HP</th>
+          <th>Kategori</th>
+          <th>Jumlah</th>
+          <th>Pembayaran</th>
+          <th>Kode Promo</th>
+        </tr>
+      </table>
+    </div>
+  </section>
+</main>
+</body>
+</html>
